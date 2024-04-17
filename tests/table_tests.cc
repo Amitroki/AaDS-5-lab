@@ -2,7 +2,7 @@
 #include <C:/Users/Alex/Desktop/AaDS/lab_5/class/hash_table.cpp>
 #include <iostream>
 
-using namespace hash_table;
+using namespace lab_5;
 using namespace std;
 
 TEST(Pair, Creating) {
@@ -13,4 +13,8 @@ TEST(Pair, Creating) {
 	cout << a.get_init() << endl;
 	a.del();
 	cout << a.get_del() << endl;
+}
+TEST(HashTable, PrintHashTable) {
+	hash_table<int, int> a(10);
+	a.print();
 }
