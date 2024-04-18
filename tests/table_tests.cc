@@ -31,10 +31,10 @@ TEST(HashTableTest, SearchElement1) {
 	int* c = a.search(0);
 	EXPECT_EQ(nullptr, b);
 }
-
-//TEST(HashTable, Insert) {
-//	HashTable<int, int> a(10);
-//	a.insert(111, 905);
-//	a.insert(109, 703);
-//	a.print();
-//}
+TEST(HashTable, Insert) {
+	HashTable<int, int> a(10);
+	a.insert(111, 905);
+	a.insert(109, 703);
+	a.insert(109, 311);
+	a.print();
+}

@@ -26,16 +26,19 @@ namespace lab_5 {
 
 	public:
 		Pair() : pair<K, V>() {
-			_del = false;
+			_del = true;
 		}
 		Pair(K key, V value) : pair<K, V>(key, value) {
-			_del = false;
+			_del = true;
 		}
 		bool is_del() {
 			return _del;
 		}
 		void del() {
 			_del = true;
+		}
+		void init() {
+			_del = false;
 		}
 	};
 	template<typename K, typename V>
@@ -87,7 +90,7 @@ namespace lab_5 {
 		V* search(K key) {
 			size_t function = get_hash(key, this->get_size());
 			while (function < this->get_size()) {
-				if (_container[function].first == key && !_container[function].is_del()) {
+				if (_container[function].first == key && _container[function].is_del() == false) {
 					return &_container[function].second;
 				}
 				function++;
@@ -95,11 +98,20 @@ namespace lab_5 {
 			return nullptr;
 		}
 
-		/*void insert(K key, V value) {
-			if (!search(key)) return;
+		void insert(K key, V value) {
+			if (search(key) != nullptr) return;
 			Pair<K, V> new_element(key, value);
-			_container[get_hash(key, this->get_size())] = new_element;
-		}*/
+			size_t function = get_hash(key, this->get_size());
+			while (function < this->get_size()) {
+				if (_container[function].is_del()) {
+					_container[function] = new_element;
+					_container[function].init();
+					_filled++;
+					return;
+				}
+				function++;
+			}
+		}
 
 		void print() {
 			for (const auto& element : _container) {
