@@ -27,14 +27,49 @@ TEST(HashTableTest, OperatorHashTable) {
 }
 TEST(HashTableTest, SearchElement1) {
 	HashTable<int, int> a(10);
-	int *b = a.search(10);
-	int* c = a.search(0);
-	EXPECT_EQ(nullptr, b);
+	a.insert(0, 100);
+	EXPECT_EQ(100, *a.search(0));
 }
-TEST(HashTable, Insert) {
+TEST(HashTableTest, SearchElement2) {
+	HashTable<int, int> a(10);
+	a.insert(10, 105);
+	EXPECT_EQ(*a.search(10), 105);
+}
+TEST(HashTableTest, InsertElement1) {
 	HashTable<int, int> a(10);
 	a.insert(111, 905);
 	a.insert(109, 703);
 	a.insert(109, 311);
+	a.print();
+}
+TEST(HashTableTest, ReassembleTest) {
+	HashTable<int, int> a(10);
+	a.insert(111, 905);
+	a.insert(109, 703);
+	a.insert(109, 311);
+	a.insert(10, 505);
+	a.insert(93, 27);
+	a.insert(754, 0);
+	a.print();
+	cout << endl << endl;
+	a.insert(1, 9);
+	a.insert(34, 27);
+	a.print();
+	cout << "size: " << a.get_size();
+}
+//TEST(HashTableTest, ContainsElement) {
+//	HashTable<int, int> a(10);
+//	a.insert(111, 905);
+//	a.insert(109, 703);
+//	EXPECT_EQ(a.contains(702), true);
+//}
+TEST(HashTableTest, InsertOrAssignElement) {
+	HashTable<int, int> a(10);
+	a.insert(111, 905);
+	a.insert(109, 703);
+	a.insert_or_assign(109, 311);
+	a.print();
+	cout << endl << endl;
+	a.insert_or_assign(109, 703);
 	a.print();
 }
