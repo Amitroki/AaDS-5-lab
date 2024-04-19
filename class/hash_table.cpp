@@ -113,8 +113,8 @@ namespace lab_5 {
 		}
 
 		HashTable& operator=(const HashTable& other) {
-			auto newTable(other);
-			return newTable;
+			*this = newTable(other);
+			return *this;
 		}
 
 		V* search(K key) {
@@ -149,7 +149,7 @@ namespace lab_5 {
 
 		void insert_or_assign(K key, V value) {
 			V* current_value = search(key);
-			if (value) {
+			if (current_value) {
 				*current_value = value;
 			}
 			else {
@@ -157,19 +157,30 @@ namespace lab_5 {
 			}
 		}
 
-		/*bool contains(V value) {
+		bool contains(V value) {
 			for (auto& element : _container) {
 				if (element.second == value && element.is_del() == false) {
 					return true;
 				}
 			}
 			return false;
-		}*/
-		
+		}
 
+		bool erase(K key) {
+			if (!search(key)) return false;
+			int function = get_hash(key, get_size());
+			int i = 0;
+			while (_container[function].first != key) {
+				i++;
+				function = get_hash(key, get_size(), i);
+			}
+			_container[function].del();
+			_filled--;
+		}
+		
 		void print() const {
 			for (const auto& element : _container) {
-				cout << "< key: " << element.first << "> < value : " << element.second << " >" << endl;
+				cout << "< key: " << element.first << "> < value : " << element.second << " >" << " < deleted: " << element.is_del() << " >" << endl;
 			}
 		}
 	};

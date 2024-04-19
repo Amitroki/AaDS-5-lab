@@ -57,17 +57,45 @@ TEST(HashTableTest, ReassembleTest) {
 	a.print();
 	cout << "size: " << a.get_size();
 }
-//TEST(HashTableTest, ContainsElement) {
-//	HashTable<int, int> a(10);
-//	a.insert(111, 905);
-//	a.insert(109, 703);
-//	EXPECT_EQ(a.contains(702), true);
-//}
+TEST(HashTableTest, ContainsElement1) {
+	HashTable<int, int> a(10);
+	a.insert(111, 905);
+	a.insert(109, 703);
+	EXPECT_EQ(a.contains(703), true);
+}
+TEST(HashTableTest, ContainsElement2) {
+	HashTable<int, int> a(10);
+	a.insert(111, 905);
+	a.insert(109, 703);
+	EXPECT_EQ(a.contains(703), true);
+	a.insert_or_assign(109, 801);
+	EXPECT_EQ(a.contains(703), false);
+}
 TEST(HashTableTest, InsertOrAssignElement) {
 	HashTable<int, int> a(10);
 	a.insert(111, 905);
 	a.insert(109, 703);
 	a.insert_or_assign(109, 311);
+	a.print();
+	cout << endl << endl;
+	a.insert_or_assign(109, 703);
+	a.print();
+}
+TEST(HashTableTest, EraseElement) {
+	HashTable<int, int> a(10);
+	a.insert(111, 905);
+	a.insert(109, 703);
+	a.insert_or_assign(109, 311);
+	a.print();
+	a.erase(109);
+	cout << endl << endl;
+	if (a.contains(311)) {
+		cout << "Element wasn't deleted!" << endl;
+	}
+	else {
+		cout << "Element was deleted!" << endl;
+	}
+	cout << endl << endl;
 	a.print();
 	cout << endl << endl;
 	a.insert_or_assign(109, 703);
