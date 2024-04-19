@@ -79,6 +79,7 @@ TEST(HashTableTest, InsertOrAssignElement) {
 	a.print();
 	cout << endl << endl;
 	a.insert_or_assign(109, 703);
+	a.insert(119, 100);
 	a.print();
 }
 TEST(HashTableTest, EraseElement) {
@@ -100,4 +101,19 @@ TEST(HashTableTest, EraseElement) {
 	cout << endl << endl;
 	a.insert_or_assign(109, 703);
 	a.print();
+}
+TEST(HashTableTest, CountOfElementsWithSameHash) {
+	HashTable<int, int> a(10);
+	a.insert(1, 905);
+	a.insert(2, 703);
+	a.insert(3, 905);
+	a.insert(11, 703);
+	a.insert(21, 541);
+	a.insert(12, 905);
+	a.insert(13, 703);
+	a.insert(4, 905);
+	a.insert(34, 899);
+	a.insert(5, 703);
+	a.print();
+	cout << a.count(1);
 }

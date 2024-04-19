@@ -177,6 +177,17 @@ namespace lab_5 {
 			_container[function].del();
 			_filled--;
 		}
+
+		int count(K key) {
+			int function = get_hash(key, get_size());
+			int count = 0;
+			for (const auto& element : _container) {
+				if (element.is_init() && !element.is_del()) {
+					if (get_hash(element.first, get_size()) == function) count++;
+				}
+			}
+			return count;
+		}
 		
 		void print() const {
 			for (const auto& element : _container) {
