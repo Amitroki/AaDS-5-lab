@@ -117,3 +117,34 @@ TEST(HashTableTest, CountOfElementsWithSameHash) {
 	a.print();
 	cout << a.count(1);
 }
+TEST(HashTableTest, RandomHash) {
+	HashTable<int, int> a(20, 10, 10, 100);
+	a.print();
+}
+//TEST(HashTableTest, Dependence) {
+//	cout << the_dependence_function(475, 24, 0, 100) << endl;
+//	cout << the_dependence_function(425, 24, 0, 100) << endl;
+//	cout << the_dependence_function(375, 24, 0, 100) << endl;
+//	cout << the_dependence_function(325, 24, 0, 100) << endl;
+//	cout << the_dependence_function(275, 24, 0, 100) << endl;
+//	cout << the_dependence_function(225, 24, 0, 100) << endl;
+//	cout << the_dependence_function(175, 24, 0, 100) << endl;
+//	cout << the_dependence_function(125, 24, 0, 100) << endl;
+//	cout << the_dependence_function(75, 24, 0, 100) << endl;
+//	cout << the_dependence_function(25, 24, 0, 100) << endl;
+//}
+TEST(HashTableTest, Task) {
+	size_t lb = 0;
+	size_t upb = 100000;
+	size_t number = 24;
+	cout << task(475, number, lb, upb) << endl;
+	cout << task(425, number, lb, upb) << endl;
+	cout << task(375, number, lb, upb) << endl;
+	cout << task(325, number, lb, upb) << endl;
+	cout << task(275, number, lb, upb) << endl;
+	cout << task(225, number, lb, upb) << endl;
+	cout << task(175, number, lb, upb) << endl;
+	cout << task(125, number, lb, upb) << endl;
+	cout << task(75, number, lb, upb) << endl;
+	cout << task(25, number, lb, upb) << endl;
+}
